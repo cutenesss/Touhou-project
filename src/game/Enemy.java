@@ -2,26 +2,35 @@ package game;
 
 import tklibs.SpriteUtils;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Random;
 
 public class Enemy {
-    Vector2D enemyPosition;
-    BufferedImage enemyImage;
+    Vector2D position;
+    BufferedImage image;
+    Vector2D velocity;
 
-    public Enemy(int imageWidth) {
-        this.enemyImage = SpriteUtils.loadImage("assets/images/enemies/level0/blue/0.png");
-        this.enemyPosition = generateRandomPosition(imageWidth, enemyImage.getHeight(), enemyImage.getWidth());
+    public Enemy() {
+        image = SpriteUtils.loadImage("assets/images/enemies/level0/blue/0.png");
+        position = new Vector2D();
+        velocity = new Vector2D(0, 3);
     }
 
-    public BufferedImage getEnemyImage(){
-        return this.enemyImage;
+    public void render(Graphics g) {
+        g.drawImage(image, (int) position.x, (int) position.y, null);
     }
 
-    private static Vector2D generateRandomPosition(int imageWidth, int a, int b) {
-        Random r = new Random();
-        int r1 = r.nextInt(imageWidth - a);
-        int r2 = r.nextInt(600 - b);
-        return new Vector2D(r1, r2);
+    public void run() {
+        position.add(velocity.x, velocity.y);
+        changeDirection();
+    }
+
+    private void changeDirection() {
+        if (position.x > 384 - 28 && velocity.x > 0) {
+            velocity.set(-velocity.x, velocity.y);
+        }
+        if (position.x < 0 && velocity.x < 0) {
+            velocity.set(-velocity.x, velocity.y);
+        }
     }
 }

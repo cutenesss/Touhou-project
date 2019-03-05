@@ -10,6 +10,7 @@ public class GameWindow extends JFrame {
     public static boolean isLeftPress;
     public static boolean isRightPress;
     public static boolean isFirePress;
+    public static boolean isSpecialPress;
 
     public GameWindow() {
         //bat su kien bam phim
@@ -31,6 +32,9 @@ public class GameWindow extends JFrame {
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     isFirePress = true;
                 }
+                if (e.getKeyCode() == KeyEvent.VK_P){
+                    isSpecialPress = true;
+                }
             }
 
             @Override
@@ -49,6 +53,9 @@ public class GameWindow extends JFrame {
                 }
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     isFirePress = false;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_P){
+                    isSpecialPress = false;
                 }
             }
         };
