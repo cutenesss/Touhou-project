@@ -1,5 +1,8 @@
 package game;
 
+import game.enemy.Enemy;
+import game.player.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -72,6 +75,7 @@ public class GamePanel extends JPanel {
                 Enemy enemy = new Enemy();
                 enemy.position.set(enemyX, -100);
                 enemy.velocity.setAngle(Math.PI / 9);
+                enemy.run();
                 enemies.add(enemy);
                 enemyCount++;
                 summonCount = 0;
@@ -84,4 +88,3 @@ public class GamePanel extends JPanel {
         }
     }
 }
-//doi hinh anh+doi vi tri xuat phat

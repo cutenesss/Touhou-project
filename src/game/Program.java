@@ -18,7 +18,7 @@ public class Program {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         GamePanel panel = new GamePanel();
-        panel.setPreferredSize(new Dimension(800, 600));
+        panel.setPreferredSize(new Dimension(Setting.GAME_WIDTH, Setting.GAME_HEIGHT));
         panel.setBackground(Color.CYAN);
 
         window.add(panel);

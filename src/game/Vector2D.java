@@ -4,9 +4,8 @@ public class Vector2D {
     public double x;
     public double y;
 
-    public Vector2D(double x, double y) {
-        this.x = x;
-        this.y = y;
+    public Vector2D(Vector2D other) {
+        this(other.x, other.y);
     }
 
     public Vector2D() {
@@ -18,9 +17,17 @@ public class Vector2D {
         this.y += y;
     }
 
+    public void add(Vector2D other) {
+        this.add(other.x, other.y);
+    }
+
     public void substract(double x, double y) {
         this.x -= x;
         this.y -= y;
+    }
+
+    public void substract(Vector2D other) {
+        this.add(other.x, other.y);
     }
 
     public void scale(double rate) {
@@ -31,6 +38,10 @@ public class Vector2D {
     public void set(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    public void set(Vector2D other) {
+        this.set(other.x, other.y);
     }
 
     public Vector2D clone() {
@@ -59,5 +70,10 @@ public class Vector2D {
             this.x = length * Math.cos(angle);
             this.y = length * Math.sin(angle);
         }
+    }
+
+    public Vector2D(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
 }

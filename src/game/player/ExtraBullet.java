@@ -1,4 +1,10 @@
-package game;
+package game.player;
+
+import game.Vector2D;
+import game.player.PlayerBulletExtraCrossLeft;
+import game.player.PlayerBulletExtraCrossRight;
+import game.player.PlayerBulletExtraDiagonalLeft;
+import game.player.PlayerBulletExtraDiagonalRight;
 
 import java.awt.*;
 
