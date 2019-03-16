@@ -16,6 +16,7 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         player = new Player();
         background = new Background();
+        player = new Player();
         enemies = new ArrayList<>();
     }
 
@@ -38,27 +39,22 @@ public class GamePanel extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-        background.render(g);
-        player.render(g);
-
-        for (int i = 0; i < enemies.size(); i++) {
-            Enemy enemy = enemies.get(i);
-            enemy.render(g);
+        for (int i = 0; i < GameObject.objects.size(); i++) {
+            GameObject object = GameObject.objects.get(i);
+            if(object.active){
+                object.render(g);
+            }
         }
     }
 
     private void runAll() {
-        background.run();
-        player.run();
-        summonEnemies();
-        enemiesRun();
-    }
-
-    private void enemiesRun() {
-        for (int i = 0; i < enemies.size(); i++) {
-            Enemy enemy = enemies.get(i);
-            enemy.run();
+        for (int i = 0; i < GameObject.objects.size(); i++) {
+            GameObject object = GameObject.objects.get(i);
+            if(object.active){
+                object.run();
+            }
         }
+        summonEnemies();
     }
 
     int summonCount;
@@ -72,7 +68,7 @@ public class GamePanel extends JPanel {
         if (waveCount > 120) {
             summonCount++;
             if (summonCount > 15) {
-                Enemy enemy = new Enemy();
+                Enemy enemy =GameObject.recycle(Enemy.class);
                 enemy.position.set(enemyX, -100);
                 enemy.velocity.setAngle(Math.PI / 9);
                 enemy.run();
